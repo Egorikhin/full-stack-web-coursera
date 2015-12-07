@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var colors = ['black', 'blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow'];
+        var initial_question = "I am thinking of one of these colors:\n\n"
+            + colors.join(', ') + "\n\n"
+            + "What color am I thinking of?";
+        
+        function do_game() {
+            var target_index = Math.floor(Math.random() * colors.length);
+            var target_color = colors[target_index];
+            alert(target_color);
+
+            do {
+                var user_choice = prompt(initial_question);
+
+                if (user_choice == target_color)
+                    break;
+            } while (true);
+        }
+
+        do_game();
+    </script>
+</body>
+</html>

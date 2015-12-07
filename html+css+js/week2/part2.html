@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var colors = ['black', 'blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow'];
+        var initial_question = "I am thinking of one of these colors:\n\n"
+            + colors.join(', ') + "\n\n"
+            + "What color am I thinking of?";
+        var unrecognized_message = "Sorry, I don't recognize your color.\n\nPlease try again.";
+        var abc_lower_message = "Sorry, your guess is not correct!\n\nHint: your color is alphabetically lower than mine.\n\nPlease try again."
+        var abc_higher_message = "Sorry, your guess is not correct!\n\nHint: your color is alphabetically higher than mine.\n\nPlease try again."
+
+        function check_guess(guess, target_color) {
+            if (colors.indexOf(guess) == -1) {
+                alert(unrecognized_message);
+                return false;
+            }
+            if (guess < target_color) {
+                alert(abc_lower_message);
+                return false;
+            }
+            if (guess > target_color) {
+                alert(abc_higher_message);
+                return false;
+            }
+            return true;
+        }
+
+        function do_game() {
+            var target_index = Math.floor(Math.random() * colors.length);
+            var target_color = colors[target_index];
+            alert(target_color);
+
+            var attempt_count = 0;
+
+            do {
+                attempt_count++;
+                var user_choice = prompt(initial_question);
+
+                if (check_guess(user_choice, target_color))
+                    break;
+            } while (true);
+            alert("Congratulations! You have guessed the color!\n\nIt took you "
+                + attempt_count + " guesses to finish the game!\n\n"
+                + "You can see the color in the background.");
+            document.getElementsByTagName("body")[0].style.background = target_color;
+        }
+
+        do_game();
+    </script>
+</body>
+</html>
